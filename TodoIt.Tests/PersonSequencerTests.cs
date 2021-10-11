@@ -18,7 +18,7 @@ namespace TodoIt.Tests
                         
 
             //Act
-            for(int i=0; i < expectedPersonId; i++)                 //Increment amount equl to expected value
+            for(int i=0; i < expectedPersonId; i++)                 //Increment amount equal to expected value
             {
                 actualPersonId = PersonSequencer.NextPersonId();    //Increment the id by one
                 //actualPersonId = testId.NextPersonId();           //Does not work for some reason?

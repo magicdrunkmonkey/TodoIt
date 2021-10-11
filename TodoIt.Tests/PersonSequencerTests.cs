@@ -12,11 +12,17 @@ namespace TodoIt.Tests
         public void IncrementPersonId()
         {
             //Arrange
-            int personId = 0;
-            int expectedPersonId = 1;
+            //PersonSequencer testId = new PersonSequencer();       //Does not work for some reason?
+            int expectedPersonId = 5;                               //Initialize expected value
+            int actualPersonId = 0;                                 //Initialize start value
+                        
 
             //Act
-            int actualPersonId = PersonSequencer.NextPersonId(personId);
+            for(int i=0; i < expectedPersonId; i++)                 //Increment amount equl to expected value
+            {
+                actualPersonId = PersonSequencer.NextPersonId();    //Increment the id by one
+                //actualPersonId = testId.NextPersonId();           //Does not work for some reason?
+            }
 
             //Assert
             Assert.Equal(expectedPersonId, actualPersonId);
@@ -25,12 +31,12 @@ namespace TodoIt.Tests
         [Fact]
         public void ResetPersonId()
         {
-            //Arrange
-            int personId = 135;
-            int expectedPersonId = 0;
+            //Arrange, initialize values
+            int expectedPersonId = 0;                       
+            int actualPersonId = 135;
 
-            //Act
-            int actualPersonId = PersonSequencer.Reset(personId);
+            //Act            
+            actualPersonId = PersonSequencer.Reset();       //Reset value to zero.
 
             //Assert
             Assert.Equal(expectedPersonId, actualPersonId);

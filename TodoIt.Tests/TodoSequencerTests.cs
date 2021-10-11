@@ -16,7 +16,7 @@ namespace TodoIt.Tests
             int actualTodoId = 0;                                 //Initialize start value
 
             //Act
-            for (int i = 0; i < expectedTodoId; i++)                //Increment amount equl to expected value
+            for (int i = 0; i < expectedTodoId; i++)                //Increment amount equal to expected value
             {
                 actualTodoId = TodoSequencer.NextTodoId();          //Increment the todoId by one                
             }

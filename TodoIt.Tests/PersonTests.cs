@@ -17,7 +17,7 @@ namespace TodoIt.Tests
             //string expectedLastName = "Tolvarsson";
 
             //Act
-            Person test = new Person(1, expectedFirstName, expectedLastName);
+            Person test = new Person(expectedNumber, expectedFirstName, expectedLastName);
             int actualNumber = test.PersonId;
             string actualFirstName = test.FirstName;
             string actualLastName = test.LastName;

@@ -17,30 +17,30 @@ namespace TodoIt.Model
         {
             TodoId = todoId;
             Description = description;
-            Done = done;
-            Assignee = assignee;
+            //Done = done; done=false;
+            //Assignee = assignee;
         }
 
         //Getters and Setters
         public int TodoId
         {
             get{return todoId;}
-            set{}
+            set{ }
         }
         public string Description
         {
             get { return description; }
-            set { }
+            set { description = value; }
         }
         public bool Done
         {
             get { return done; }
-            set { }
+            set { done = value; }
         }
         public Person Assignee
         {
             get { return assignee; }
-            set { }
+            set { assignee = value; }
         }
     }
 }

@@ -4,27 +4,24 @@ using System.Text;
 
 namespace TodoIt.Model
 {
-    class Person
-    {
-        
-        //Fields
+    public class Person
+    {        
+        //Fields, declare, initialize
         private readonly int personId;        
         private string firstName;
         private string lastName;
-
-        //Getters and setters
-        readonly int id;
-        readonly string fName;
-        readonly string lName;
-        public int Id 
+        
+        //Getters and Setters
+        public int PersonId 
         { 
-            get { return id; }
+            get { return personId; }
             set { }
         }        
         public string FirstName 
         { 
-            get { return fName; }
-            set {
+            get { return firstName; }
+            set 
+            {
                 if (value.Equals("") || value.Equals(null))
                 {
                     throw new ArgumentException("Not a valid name.");
@@ -34,8 +31,9 @@ namespace TodoIt.Model
         }                
         public string LastName 
         {
-            get { return lName; }
-            set {
+            get { return lastName; }
+            set 
+            {
                 if (value.Equals("") || value.Equals(null))
                 {
                     throw new ArgumentException("Not a valid name.");
@@ -45,11 +43,11 @@ namespace TodoIt.Model
         }
 
         //Constructors
-        public Person()
+        public Person(int personId, string firstName, string lastName)
         {
-            this.personId = Id;
-            this.firstName = FirstName;
-            this.lastName = LastName;
+            PersonId = personId;
+            FirstName = firstName;
+            LastName = lastName;
         }
     }
 }

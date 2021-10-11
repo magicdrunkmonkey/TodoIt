@@ -15,12 +15,14 @@ namespace TodoIt.Model
         //Constructors
         public Todo(int todoId, string description)
         {
-            TodoID = todoId;
+            TodoId = todoId;
             Description = description;
+            Done = done;
+            Assignee = assignee;
         }
 
         //Getters and Setters
-        public int TodoID
+        public int TodoId
         {
             get{return todoId;}
             set{}

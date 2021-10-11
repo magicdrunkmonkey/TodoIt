@@ -12,8 +12,33 @@ namespace TodoIt.Model
         private bool done;
         private Person assignee;
 
-        //Getters and Setters
-
         //Constructors
+        public Todo(int todoId, string description)
+        {
+            TodoID = todoId;
+            Description = description;
+        }
+
+        //Getters and Setters
+        public int TodoID
+        {
+            get{return todoId;}
+            set{}
+        }
+        public string Description
+        {
+            get { return description; }
+            set { }
+        }
+        public bool Done
+        {
+            get { return done; }
+            set { }
+        }
+        public Person Assignee
+        {
+            get { return assignee; }
+            set { }
+        }
     }
 }

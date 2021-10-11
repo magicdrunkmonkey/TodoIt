@@ -10,7 +10,15 @@ namespace TodoIt.Model
         private readonly int personId;        
         private string firstName;
         private string lastName;
-        
+
+        //Constructors
+        public Person(int personId, string firstName, string lastName)
+        {
+            PersonId = personId;
+            FirstName = firstName;
+            LastName = lastName;
+        }
+
         //Getters and Setters
         public int PersonId 
         { 
@@ -42,12 +50,6 @@ namespace TodoIt.Model
             }
         }
 
-        //Constructors
-        public Person(int personId, string firstName, string lastName)
-        {
-            PersonId = personId;
-            FirstName = firstName;
-            LastName = lastName;
-        }
+        
     }
 }

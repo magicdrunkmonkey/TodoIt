@@ -58,5 +58,22 @@ namespace TodoIt.Data
         {            
             todoArray = new Todo[0];
         }
+
+        //10. Add below the following methods to TodoItems class
+        //a. public Todo[] FindByDoneStatus(bool doneStatus) – Returns array with 
+        //objects that has a matching done status.
+
+        //b. public Todo[] FindByAssignee(int personId) – Returns array with objects that
+        //has an assignee with a personId matching.
+
+        //c. public Todo[] FindByAssignee(Person assignee) – Returns array with objects
+        //that has sent in Person.
+        
+        //d. public Todo[] FindUnassignedTodoItems() – Returns an array of objects that
+        //does not have an assignee set.
+
+
+
+
     }
 }

@@ -16,9 +16,7 @@ namespace TodoIt.Model
         public Todo(int todoId, string description)
         {
             this.todoId = todoId;
-            Description = description;
-            //Done = done; done=false;
-            //Assignee = assignee;
+            Description = description;            
         }
 
         //Getters and Setters

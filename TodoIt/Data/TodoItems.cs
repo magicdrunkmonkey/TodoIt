@@ -5,34 +5,36 @@ using TodoIt.Model;
 
 namespace TodoIt.Data
 {
-    public class People
+    public class TodoItems
     {
+        //TodoItems should have the same functionality as the People class.
+
         //Have a private static Person array declared and instantiated as empty 
         //and not null (new Person[0])
-        private static Person[] personArray = new Person[0];
+        private static Todo[] todoArray = new Todo[0];
 
         //Add a method public int Size() that return the length of the array.
         public int Size()
         {
-            return personArray.Length;
+            return todoArray.Length;
         }
 
         //Add a method public Person[] FindAll() that return the Person array.
-        public Person[] FindAll()
+        public Todo[] FindAll()
         {            
-            return personArray;
+            return todoArray;
         }
 
         //Add a method public Person FindById(int personId) that return the person
         //that has a matching personId as the passed in parameter.
-        public Person FindById(int personId)
+        public Todo FindById(int personId)
         {
             //return personArray[personId]; //Felaktigt, söker index inte id
-            for(int i=0; i < personArray.Length; i++)
+            for(int i=0; i < todoArray.Length; i++)
             {
-                if (personArray[i].PersonId == personId)
+                if (todoArray[i].TodoId == personId)
                 {
-                    return personArray[i];
+                    return todoArray[i];
                 }
             }
             return null;
@@ -42,19 +44,19 @@ namespace TodoIt.Data
         //the array and then return the created object. You have to “expand” the
         //Person array. (tip: send in parameters needed to create the Person object and
         //use the PersonSequencer to give a unique personId)
-        public Person NewPerson(string firstName, string lastName)
+        public Todo NewTodo(string description)
         {
-            int personId = PersonSequencer.NextPersonId();
-            Array.Resize(ref personArray, personArray.Length + 1);                          //Add one to index for a new person
-            personArray[personArray.Length-1] = new Person(personId, firstName, lastName);  //Create and add the new person to the index
-            return personArray[personArray.Length-1];                                       //Return the new created person
+            int todoId = TodoSequencer.NextTodoId();
+            Array.Resize(ref todoArray, todoArray.Length + 1);                          //Add one to index for a new todo
+            todoArray[todoArray.Length-1] = new Todo(todoId, description);              //Create and add the new todo to the index
+            return todoArray[todoArray.Length-1];                                   //Return the new created todo
         }
 
         //Add a method public void Clear() that clears all Person objects from the 
         //Person array.
         public void Clear()
         {            
-            personArray = new Person[0];
+            todoArray = new Todo[0];
         }
     }
 }

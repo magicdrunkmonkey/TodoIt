@@ -60,6 +60,7 @@ namespace TodoIt.Data
         }
 
         //10. Add below the following methods to TodoItems class
+
         //a. public Todo[] FindByDoneStatus(bool doneStatus) – Returns array with 
         //objects that has a matching done status.
         public Todo[] FindByDoneStatus(bool doneStatus)
@@ -70,8 +71,8 @@ namespace TodoIt.Data
             {
                 if (todoArray[i].Done == true)
                 {
-                    Array.Resize(ref hasDoneStatus, hasDoneStatus.Length + 1);
-                    hasDoneStatus[hasDoneStatus.Length - 1] = new Todo(todoArray[i].TodoId, todoArray[i].Description);
+                    Array.Resize(ref hasDoneStatus, hasDoneStatus.Length + 1);                    
+                    hasDoneStatus[hasDoneStatus.Length - 1] = todoArray[i];         //Store found match
                 }
             }
 
@@ -86,12 +87,11 @@ namespace TodoIt.Data
 
             for(int i = 0; i < todoArray.Length; i++)
             {
-                if(todoArray[i].Assignee != null)
+                if(todoArray[i].TodoId == personId && todoArray[i].Assignee != null)
                 {
                     Array.Resize(ref hasAssignee, hasAssignee.Length + 1);
-                    hasAssignee[hasAssignee.Length - 1] = new Todo(todoArray[i].TodoId, todoArray[i].Description);
+                    hasAssignee[hasAssignee.Length - 1] = todoArray[i];         //Store found match
                 }
-
             }
 
             return hasAssignee;
@@ -99,10 +99,39 @@ namespace TodoIt.Data
 
         //c. public Todo[] FindByAssignee(Person assignee) – Returns array with objects
         //that has sent in Person.
+        public Todo[] FindByAssignee(Person assignee)
+        {
+            Todo[] findAssignee = new Todo[0];              //Temporary objects with same assignee counter
+
+            for (int i = 0; i < todoArray.Length; i++)
+            {
+                if (todoArray[i].Assignee == assignee)
+                {
+                    Array.Resize(ref findAssignee, findAssignee.Length + 1);
+                    findAssignee[findAssignee.Length - 1] = todoArray[i];       //Store found match
+                }
+            }
+
+            return findAssignee;
+        }
 
         //d. public Todo[] FindUnassignedTodoItems() – Returns an array of objects that
         //does not have an assignee set.
+        public Todo[] FindUnassignedTodoItems()
+        {
+            Todo[] unAssignedTodoItems = new Todo[0];              //Temporary objects counter for no assignee
 
+            for (int i = 0; i < todoArray.Length; i++)
+            {
+                if (todoArray[i].Assignee == null)
+                {
+                    Array.Resize(ref unAssignedTodoItems, unAssignedTodoItems.Length + 1);
+                    unAssignedTodoItems[unAssignedTodoItems.Length - 1] = todoArray[i];       //Store found match
+                }
+            }
+
+            return unAssignedTodoItems;
+        }
 
 
 

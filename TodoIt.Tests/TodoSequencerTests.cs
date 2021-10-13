@@ -11,6 +11,9 @@ namespace TodoIt.Tests
         [Fact]
         public void IncrementTodoId()
         {
+            //Prepare
+            TodoSequencer.Reset();
+
             //Arrange            
             int expectedTodoId = 5;                               //Initialize expected value
             int actualTodoId = 0;                                 //Initialize start value
@@ -23,6 +26,9 @@ namespace TodoIt.Tests
 
             //Assert
             Assert.Equal(expectedTodoId, actualTodoId);
+
+            //Cleanup
+            TodoSequencer.Reset();
         }
 
         [Fact]
@@ -37,6 +43,7 @@ namespace TodoIt.Tests
 
             //Assert
             Assert.Equal(expectedTodoId, actualTodoId);
+            
         }
     }
 }

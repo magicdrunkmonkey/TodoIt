@@ -84,6 +84,7 @@ namespace TodoIt.Tests
             Todo item1 = todoNewItem.NewTodo(expectedDescription1);
             Todo item2 = todoNewItem.NewTodo(expectedDescription2);
             Todo item3 = todoNewItem.NewTodo(expectedDescription3);
+            TodoSequencer.
 
             //Assert
             Assert.Equal(1, item1.TodoId);

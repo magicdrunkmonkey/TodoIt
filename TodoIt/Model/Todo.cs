@@ -9,7 +9,7 @@ namespace TodoIt.Model
         //Fields, declare, initialize        
         private readonly int todoId;
         private string description;
-        private bool done;
+        private bool done;              //Not initated bool is false.
         private Person assignee;
 
         //Constructors

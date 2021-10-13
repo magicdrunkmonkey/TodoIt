@@ -47,8 +47,8 @@ namespace TodoIt.Data
         public Todo NewTodo(string description)
         {
             int todoId = TodoSequencer.NextTodoId();
-            Array.Resize(ref todoArray, todoArray.Length + 1);                          //Add one to index for a new todo
-            todoArray[todoArray.Length-1] = new Todo(todoId, description);              //Create and add the new todo to the index
+            Array.Resize(ref todoArray, todoArray.Length + 1);                      //Add one to index for a new todo
+            todoArray[todoArray.Length-1] = new Todo(todoId, description);          //Create and add the new todo to the index
             return todoArray[todoArray.Length-1];                                   //Return the new created todo
         }
 
@@ -62,13 +62,44 @@ namespace TodoIt.Data
         //10. Add below the following methods to TodoItems class
         //a. public Todo[] FindByDoneStatus(bool doneStatus) – Returns array with 
         //objects that has a matching done status.
+        public Todo[] FindByDoneStatus(bool doneStatus)
+        {
+            Todo[] hasDoneStatus = new Todo[0];         //Temporary status counter 
+
+            for (int i = 0; i < todoArray.Length; i++)
+            {
+                if (todoArray[i].Done == true)
+                {
+                    Array.Resize(ref hasDoneStatus, hasDoneStatus.Length + 1);
+                    hasDoneStatus[hasDoneStatus.Length - 1] = new Todo(todoArray[i].TodoId, todoArray[i].Description);
+                }
+            }
+
+            return hasDoneStatus;
+        }
 
         //b. public Todo[] FindByAssignee(int personId) – Returns array with objects that
         //has an assignee with a personId matching.
+        public Todo[] FindByAssignee(int personId)
+        {
+            Todo[] hasAssignee = new Todo[0];           //Temporary assignee counter 
+
+            for(int i = 0; i < todoArray.Length; i++)
+            {
+                if(todoArray[i].Assignee != null)
+                {
+                    Array.Resize(ref hasAssignee, hasAssignee.Length + 1);
+                    hasAssignee[hasAssignee.Length - 1] = new Todo(todoArray[i].TodoId, todoArray[i].Description);
+                }
+
+            }
+
+            return hasAssignee;
+        }
 
         //c. public Todo[] FindByAssignee(Person assignee) – Returns array with objects
         //that has sent in Person.
-        
+
         //d. public Todo[] FindUnassignedTodoItems() – Returns an array of objects that
         //does not have an assignee set.
 

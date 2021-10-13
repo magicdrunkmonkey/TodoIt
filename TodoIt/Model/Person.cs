@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TodoIt.Data;
 
 namespace TodoIt.Model
 {
     public class Person
-    {        
+    {
         //Fields, declare, initialize
         private readonly int personId;        
         private string firstName;
@@ -14,7 +15,7 @@ namespace TodoIt.Model
         //Constructors
         public Person(int personId, string firstName, string lastName)
         {
-            PersonId = personId;
+            this.personId = personId;
             FirstName = firstName;
             LastName = lastName;
         }
@@ -23,7 +24,7 @@ namespace TodoIt.Model
         public int PersonId 
         { 
             get { return personId; }
-            set { }
+            set {  }
         }        
         public string FirstName 
         { 

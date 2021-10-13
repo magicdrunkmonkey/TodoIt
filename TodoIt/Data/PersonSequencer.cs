@@ -13,7 +13,7 @@ namespace TodoIt.Data
         //personId value.
         public static int NextPersonId()
         {
-            return ++personId;
+           return ++personId;
         }
 
         //Add a static method called reset() that sets the personId variable to 0.

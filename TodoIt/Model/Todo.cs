@@ -15,7 +15,7 @@ namespace TodoIt.Model
         //Constructors
         public Todo(int todoId, string description)
         {
-            TodoId = todoId;
+            this.todoId = todoId;
             Description = description;
             //Done = done; done=false;
             //Assignee = assignee;

@@ -11,21 +11,22 @@ namespace TodoIt.Tests
         [Fact]
         public void IncrementPersonId()
         {
-            //Arrange
-            //PersonSequencer testId = new PersonSequencer();       //Does not work for some reason?
+            //Arrange            
             int expectedPersonId = 5;                               //Initialize expected value
-            int actualPersonId = 0;                                 //Initialize start value
-                        
+            int actualPersonId = 1000;                              //Initialize start value 
 
             //Act
             for(int i=0; i < expectedPersonId; i++)                 //Increment amount equal to expected value
             {
-                actualPersonId = PersonSequencer.NextPersonId();    //Increment the id by one
-                //actualPersonId = testId.NextPersonId();           //Does not work for some reason?
+                actualPersonId = PersonSequencer.NextPersonId();    //Increment the id by one from zero                
             }
 
             //Assert
             Assert.Equal(expectedPersonId, actualPersonId);
+
+            //Cleanup
+            PersonSequencer.Reset();                                //Reset static personID counter to avoid interacting
+                                                                    //with other methods or functions.
         }
 
         [Fact]

@@ -22,6 +22,10 @@ namespace TodoIt.Tests
 
             //Assert
             Assert.Equal(expectedSize, actualSize);
+
+            //Cleanup
+            PersonSequencer.Reset();
+            people.Clear();
         }
 
         [Fact]
@@ -42,7 +46,7 @@ namespace TodoIt.Tests
 
             //Cleanup
             PersonSequencer.Reset();
-            
+            peopleFindAll.Clear();            
         }
 
         [Fact]
@@ -60,7 +64,8 @@ namespace TodoIt.Tests
             Assert.Equal(0, peopleTestClear.Size());
 
             //Cleanup
-            PersonSequencer.Reset();            
+            PersonSequencer.Reset();
+            peopleTestClear.Clear();
         }
 
         [Fact]        
@@ -89,6 +94,7 @@ namespace TodoIt.Tests
                         
             //Cleanup
             PersonSequencer.Reset();
+            people.Clear();
         }
 
         [Fact]
@@ -113,6 +119,7 @@ namespace TodoIt.Tests
 
             //Cleanup
             PersonSequencer.Reset();
+            peopleFindById.Clear();
         }
     }
 }

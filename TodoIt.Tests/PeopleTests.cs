@@ -94,7 +94,25 @@ namespace TodoIt.Tests
         [Fact]
         public void TestFindById()
         {
+            //Prepare
+            PersonSequencer.Reset();
 
+            //Arrange
+            People peopleFindById = new People();
+            peopleFindById.Clear();
+
+            //Act            
+            Person person1 = peopleFindById.NewPerson("Kalle", "Anka");
+            Person person2 = peopleFindById.NewPerson("Musse", "Pigg");
+            Person person3 = peopleFindById.NewPerson("Jan", "Långben");
+
+            //Assert
+            Assert.Equal("Musse", peopleFindById.FindById(2).FirstName);
+            Assert.Equal("Långben", peopleFindById.FindById(3).LastName);
+            Assert.Equal(1, peopleFindById.FindById(1).PersonId);
+
+            //Cleanup
+            PersonSequencer.Reset();
         }
     }
 }

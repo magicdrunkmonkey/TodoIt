@@ -73,6 +73,10 @@ namespace TodoIt.Tests
         [Fact]
         public void TestNewTodo()
         {
+            //Prepare
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
+
             //Arrange
             TodoItems todoNewItem = new TodoItems();
             TodoSequencer.Reset();
@@ -97,6 +101,7 @@ namespace TodoIt.Tests
 
             //Cleanup
             TodoSequencer.Reset();
+            PersonSequencer.Reset();
             todoNewItem.Clear();
         }
 
@@ -104,7 +109,8 @@ namespace TodoIt.Tests
         public void TestFindById()
         {
             //Prepare
-            TodoSequencer.Reset();            
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
 
             //Arrange
             TodoItems todoFindById = new TodoItems();
@@ -133,6 +139,7 @@ namespace TodoIt.Tests
         {
             //Prepare
             TodoSequencer.Reset();
+            PersonSequencer.Reset();
 
             //Arrange
             TodoItems todoFindByDoneStatus = new TodoItems();
@@ -162,10 +169,11 @@ namespace TodoIt.Tests
         }
 
         [Fact]
-        public void TestFindByAssignee()
+        public void TestFindByAssigneeWithPerson()
         {
             //Prepare
             TodoSequencer.Reset();
+            PersonSequencer.Reset();
 
             //Arrange
             TodoItems todoFindByAssignee = new TodoItems();
@@ -189,7 +197,7 @@ namespace TodoIt.Tests
 
             //Act            
             Todo[] foundAssignees = new Todo[3];
-            foundAssignees = todoFindByAssignee.FindByAssignee(person1);
+            foundAssignees = todoFindByAssignee.FindByAssignee(person1);    //Find all assignees with name Luky Luke
 
             //Assert
             Assert.Equal(2, foundAssignees.Length);
@@ -199,6 +207,89 @@ namespace TodoIt.Tests
             PersonSequencer.Reset();
             todoFindByAssignee.Clear();
             peopleFindByAssignee.Clear();
+        }
+
+        [Fact]
+        public void TestFindByAssigneeWithPersonId()
+        {
+            //Prepare
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
+
+            //Arrange
+            TodoItems todoFindByAssigneePersonId = new TodoItems();
+            todoFindByAssigneePersonId.Clear();
+            string expectedDescription1 = "Kalle Anka var glad i duschen.";
+            string expectedDescription2 = "Musse Pigg spelade boll med Jan Långben.";
+            string expectedDescription3 = "Jan Långben fångade boll med Musse Pigg.";
+
+            Todo item1 = todoFindByAssigneePersonId.NewTodo(expectedDescription1);
+            Todo item2 = todoFindByAssigneePersonId.NewTodo(expectedDescription2);
+            Todo item3 = todoFindByAssigneePersonId.NewTodo(expectedDescription3);
+
+            People peopleFindByAssigneePersonId = new People();
+            peopleFindByAssigneePersonId.Clear();
+            Person person1 = peopleFindByAssigneePersonId.NewPerson("Lucky", "Luke");
+            Person person2 = peopleFindByAssigneePersonId.NewPerson("Alfons", "Åberg");
+
+            item1.Assignee = person1;
+            item2.Assignee = person2;
+            item3.Assignee = person1;
+
+            //Act            
+            Todo[] foundAssignees = new Todo[3];
+            foundAssignees = todoFindByAssigneePersonId.FindByAssignee(1);  //Search for all assignees with personId 1
+
+            //Assert
+            Assert.Equal(2, foundAssignees.Length);
+
+            //Cleanup
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
+            todoFindByAssigneePersonId.Clear();
+            peopleFindByAssigneePersonId.Clear();
+        }
+
+        [Fact]
+        public void TestFindByAssigneeWithNoAssignee()
+        {
+            //Prepare
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
+
+            //Arrange
+            TodoItems todoFindByAssigneeUnassigned = new TodoItems();
+            todoFindByAssigneeUnassigned.Clear();
+            string expectedDescription1 = "Kalle Anka var glad i duschen.";
+            string expectedDescription2 = "Musse Pigg spelade boll med Jan Långben.";
+            string expectedDescription3 = "Jan Långben fångade boll med Musse Pigg.";
+
+            Todo item1 = todoFindByAssigneeUnassigned.NewTodo(expectedDescription1);
+            Todo item2 = todoFindByAssigneeUnassigned.NewTodo(expectedDescription2);
+            Todo item3 = todoFindByAssigneeUnassigned.NewTodo(expectedDescription3);
+
+            People peopleFindByAssigneeUnassigned = new People();
+            peopleFindByAssigneeUnassigned.Clear();
+            Person person1 = peopleFindByAssigneeUnassigned.NewPerson("Lucky", "Luke");
+            Person person2 = peopleFindByAssigneeUnassigned.NewPerson("Alfons", "Åberg");
+
+            item1.Assignee = person1;
+            //item2.Assignee = person2;
+            item3.Assignee = person2;
+
+            //Act            
+            Todo[] foundUnassigned = new Todo[3];
+            foundUnassigned = todoFindByAssigneeUnassigned.FindUnassignedTodoItems();  //Search for all unassigned todo
+            int collectionSize = foundUnassigned.Length;
+
+            //Assert
+            Assert.Equal(1, collectionSize);
+
+            //Cleanup
+            TodoSequencer.Reset();
+            PersonSequencer.Reset();
+            todoFindByAssigneeUnassigned.Clear();
+            peopleFindByAssigneeUnassigned.Clear();
         }
     }
 }

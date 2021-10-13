@@ -31,7 +31,9 @@ namespace TodoIt.Tests
         [Fact]
         public void TestFindAll()
         {
+            //Prepare
             PersonSequencer.Reset();
+            TodoSequencer.Reset();
             
             //Arrange
             People peopleFindAll = new People();
@@ -46,6 +48,7 @@ namespace TodoIt.Tests
 
             //Cleanup
             PersonSequencer.Reset();
+            TodoSequencer.Reset();
             peopleFindAll.Clear();            
         }
 
@@ -71,8 +74,13 @@ namespace TodoIt.Tests
         [Fact]        
         public void TestNewPerson()
         {
+            //Prepare
+            PersonSequencer.Reset();
+            TodoSequencer.Reset();
+
             //Arrange
             People people = new People();
+            people.Clear();
 
             //Act
             Person array1 = people.NewPerson("Kalle", "Anka");
@@ -102,6 +110,7 @@ namespace TodoIt.Tests
         {
             //Prepare
             PersonSequencer.Reset();
+            TodoSequencer.Reset();
 
             //Arrange
             People peopleFindById = new People();
@@ -119,6 +128,7 @@ namespace TodoIt.Tests
 
             //Cleanup
             PersonSequencer.Reset();
+            TodoSequencer.Reset();
             peopleFindById.Clear();
         }
     }

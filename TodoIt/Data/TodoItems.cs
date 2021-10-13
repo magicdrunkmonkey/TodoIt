@@ -87,7 +87,7 @@ namespace TodoIt.Data
 
             for(int i = 0; i < todoArray.Length; i++)
             {
-                if(todoArray[i].TodoId == personId && todoArray[i].Assignee != null)
+                if(todoArray[i].Assignee.PersonId == personId)
                 {
                     Array.Resize(ref hasAssignee, hasAssignee.Length + 1);
                     hasAssignee[hasAssignee.Length - 1] = todoArray[i];         //Store found match

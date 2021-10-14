@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using TodoIt.Model;
 
@@ -133,7 +134,45 @@ namespace TodoIt.Data
             return unAssignedTodoItems;
         }
 
+        //11. Add the following to TodoItems AND People class.
+        //a.Functionality to remove object from array. (not nulling)
+        //First: you need to find the correct array index of the object.
+        //Second: You need to rebuild array by excluding the object on found index.
 
+        public Todo[] RemoveTodoItem(int todoId)
+        {
+            //Attempt1
+            /*
+            //Todo[] editedTodoItems = new Todo[0];
+            for(int i=0; i < todoArray.Length; i++)
+            {
+                if(todoArray[i].TodoId == todoId)
+                {
+                    Array.Resize(ref editedTodoItems, editedTodoItems.Length + 1);
+                    int indexToRemove = i;
+                    todoArray = todoArray.Where((source, index) => index != indexToRemove).ToArray();
+                }                
+            }*/
+
+            //Attempt 2, Maybe works
+            //todoArray = todoArray.Where(item => item.TodoId != todoId).ToArray();            
+
+            //Attempt 3
+            int j = 0;
+            Todo[] tempArray = new Todo[todoArray.Length-1];
+            for (int i = 0; i < todoArray.Length; i++)
+            {                
+                if (todoArray[i].TodoId != todoId)
+                {                    
+                    tempArray[j] = todoArray[i];
+                    j++;
+                }
+            }
+            
+            todoArray = tempArray;
+
+            return todoArray;
+        }
 
     }
 }

@@ -56,5 +56,29 @@ namespace TodoIt.Data
         {            
             personArray = new Person[0];
         }
+
+        //11. Add the following to TodoItems AND People class.
+        //a.Functionality to remove object from array. (not nulling)
+        //First: you need to find the correct array index of the object.
+        //Second: You need to rebuild array by excluding the object on found index.
+
+        public Person[] RemovePerson(int personId)
+        {  
+            //Attempt 3
+            int j = 0;
+            Person[] tempArray = new Person[personArray.Length - 1];
+            for (int i = 0; i < personArray.Length; i++)
+            {
+                if (personArray[i].PersonId != personId)
+                {
+                    tempArray[j] = personArray[i];
+                    j++;
+                }
+            }
+
+            personArray = tempArray;
+
+            return personArray;
+        }
     }
 }

@@ -291,5 +291,37 @@ namespace TodoIt.Tests
             todoFindByAssigneeUnassigned.Clear();
             peopleFindByAssigneeUnassigned.Clear();
         }
+
+        [Fact]
+        public void TestRemoveTodoItem()
+        {
+            //Prepare
+            TodoSequencer.Reset();
+
+            //Arrange
+            TodoItems removeTodoItem = new TodoItems();
+            removeTodoItem.Clear();
+            string expectedDescription1 = "Kalle Anka var glad i duschen.";
+            string expectedDescription2 = "Musse Pigg spelade boll med Jan Långben.";
+            string expectedDescription3 = "Jan Långben fångade boll med Musse Pigg.";
+
+            //Act
+            Todo item1 = removeTodoItem.NewTodo(expectedDescription1);
+            Todo item2 = removeTodoItem.NewTodo(expectedDescription2);
+            Todo item3 = removeTodoItem.NewTodo(expectedDescription3);
+
+            removeTodoItem.RemoveTodoItem(2);            
+
+            //Assert
+            Assert.Equal(item1, removeTodoItem.FindById(1));        //Item1 remains
+            Assert.Null(removeTodoItem.FindById(2));                //Means Todo object item2 is removed.
+            Assert.Equal(item3, removeTodoItem.FindById(3));        //Item3 remains
+
+            Assert.Equal(2, removeTodoItem.Size());                 //Verify only remaining 2 of 3 objects.
+
+            //Cleanup
+            TodoSequencer.Reset();
+            removeTodoItem.Clear();
+        }
     }
 }

@@ -297,6 +297,7 @@ namespace TodoIt.Tests
         {
             //Prepare
             TodoSequencer.Reset();
+            PersonSequencer.Reset();
 
             //Arrange
             TodoItems removeTodoItem = new TodoItems();
@@ -321,6 +322,7 @@ namespace TodoIt.Tests
 
             //Cleanup
             TodoSequencer.Reset();
+            PersonSequencer.Reset();
             removeTodoItem.Clear();
         }
     }

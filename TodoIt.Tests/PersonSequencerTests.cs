@@ -11,6 +11,9 @@ namespace TodoIt.Tests
         [Fact]
         public void IncrementPersonId()
         {
+            //Prepare
+            PersonSequencer.Reset();
+
             //Arrange            
             int expectedPersonId = 5;                               //Initialize expected value
             int actualPersonId = 1000;                              //Initialize start value 

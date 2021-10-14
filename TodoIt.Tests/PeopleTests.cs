@@ -55,6 +55,9 @@ namespace TodoIt.Tests
         [Fact]
         public void TestClear()
         {
+            //Prepare
+            PersonSequencer.Reset();
+
             //Arrange
             People peopleTestClear = new People();
 
@@ -130,6 +133,37 @@ namespace TodoIt.Tests
             PersonSequencer.Reset();
             TodoSequencer.Reset();
             peopleFindById.Clear();
+        }
+
+        [Fact]
+        public void TestRemovePersond()
+        {
+            //Prepare
+            PersonSequencer.Reset();
+            TodoSequencer.Reset();
+
+            //Arrange
+            People removePerson = new People();
+            removePerson.Clear();
+
+            //Act            
+            Person person1 = removePerson.NewPerson("Kalle", "Anka");
+            Person person2 = removePerson.NewPerson("Musse", "Pigg");
+            Person person3 = removePerson.NewPerson("Jan", "Långben");
+
+            removePerson.RemovePerson(2);
+
+            //Assert
+            Assert.Equal(person1, removePerson.FindById(1));        //Person1 remains
+            Assert.Null(removePerson.FindById(2));                  //Means the object person2 is removed.
+            Assert.Equal(person3, removePerson.FindById(3));        //Person3 remains
+
+            Assert.Equal(2, removePerson.Size());                   //Verify only remaining 2 of 3 objects.                       
+
+            //Cleanup
+            PersonSequencer.Reset();
+            TodoSequencer.Reset();
+            removePerson.Clear();
         }
     }
 }

@@ -131,6 +131,7 @@ namespace TodoIt.Tests
 
             //Cleanup
             TodoSequencer.Reset();
+            PersonSequencer.Reset();
             todoFindById.Clear();
         }
 
@@ -165,6 +166,7 @@ namespace TodoIt.Tests
 
             //Cleanup
             TodoSequencer.Reset();
+            PersonSequencer.Reset();
             todoFindByDoneStatus.Clear();
         }
 

@@ -14,7 +14,7 @@ namespace TodoIt.Tests
         public void ConstructorPerson(int expectedNumber, string expectedFirstName, string expectedLastName)
         {
             //Prepare
-            //PersonSequencer.Reset();
+            PersonSequencer.Reset();
 
             //Arrange               
 
@@ -30,52 +30,53 @@ namespace TodoIt.Tests
             Assert.Equal(expectedLastName, actualLastName);
 
             //Cleanup
-            //PersonSequencer.Reset();
+            PersonSequencer.Reset();
+            
         }
-        /*
+        
         [Theory]
         [InlineData(0, null, "Tolvarsson")]
-        //[InlineData(0, "", "Tolvarsson")]
-        public void check_FirstName_Null(int expectedNumber, string expectedFirstName, string expectedLastName)
-        {
-            //Prepare
-            PersonSequencer.Reset();
-
-            //Arrange
-            Person checkFirstName = new Person(expectedNumber, expectedFirstName, expectedLastName);
-
-            //Act
-
-            //Assert            
-            //Assert.Throws<ArgumentException>(() => new Person(expectedNumber, expectedFirstName, expectedLastName));
-            //Assert.Throws<NullReferenceException>(() => new Person(expectedNumber, expectedFirstName, expectedLastName));
-            //Assert.Equal("Not a valid name.", () => new Person(expectedNumber, expectedFirstName, expectedLastName));
-            Assert.Throws<ArgumentException>(() => new Person(expectedNumber, expectedFirstName, expectedLastName));
-
-            //Cleanup
-            PersonSequencer.Reset();
-        }
-
-        [Theory]
-        //[InlineData(0, null, "Tolvarsson")]
         [InlineData(0, "", "Tolvarsson")]
-        public void check_FirstName_Empty(int expectedNumber, string expectedFirstName, string expectedLastName)
+        public void check_FirstName_NullAndEmpty(int expectedNumber, string expectedFirstName, string expectedLastName)
         {
             //Prepare
             PersonSequencer.Reset();
 
-            //Arrange
-            Person checkFirstName = new Person(expectedNumber, expectedFirstName, expectedLastName);
-            string actualFirstName = checkFirstName.FirstName;
+            //Arrange            
+            string expectedMessage = "Not a valid name.";
 
-            //Act
+            //Act            
+            ArgumentException result = Assert.Throws<ArgumentException>(
+                () => new Person(expectedNumber, expectedFirstName, expectedLastName));
 
             //Assert
-            Assert.Equal(expectedFirstName, actualFirstName);
+            Assert.Equal(expectedMessage, result.Message);            
 
             //Cleanup
             PersonSequencer.Reset();
         }
-        */
+
+        
+        [Theory]
+        [InlineData(0, "Tolvar", null)]
+        [InlineData(0, "Tolvar", "")]
+        public void check_LastName_NullAndEmpty(int expectedNumber, string expectedFirstName, string expectedLastName)
+        {
+            //Prepare
+            PersonSequencer.Reset();
+
+            //Arrange            
+            string expectedMessage = "Not a valid name.";
+
+            //Act            
+            ArgumentException result = Assert.Throws<ArgumentException>(
+                () => new Person(expectedNumber, expectedFirstName, expectedLastName));
+
+            //Assert
+            Assert.Equal(expectedMessage, result.Message);
+
+            //Cleanup
+            PersonSequencer.Reset();
+        }        
     }
 }

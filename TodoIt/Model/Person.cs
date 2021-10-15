@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using TodoIt.Data;
+using System.Linq;
 
 namespace TodoIt.Model
 {
@@ -31,7 +32,7 @@ namespace TodoIt.Model
             get { return firstName; }
             set 
             {
-                if (value.Equals("") || value.Equals(null))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Not a valid name.");
                 }
@@ -43,7 +44,7 @@ namespace TodoIt.Model
             get { return lastName; }
             set 
             {
-                if (value.Equals("") || value.Equals(null))
+                if (string.IsNullOrEmpty(value))
                 {
                     throw new ArgumentException("Not a valid name.");
                 }

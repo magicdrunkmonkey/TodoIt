@@ -70,7 +70,7 @@ namespace TodoIt.Data
 
             for (int i = 0; i < todoArray.Length; i++)
             {
-                if (todoArray[i].Done == true)
+                if (todoArray[i].Done == doneStatus)
                 {
                     Array.Resize(ref hasDoneStatus, hasDoneStatus.Length + 1);                    
                     hasDoneStatus[hasDoneStatus.Length - 1] = todoArray[i];         //Store found match
